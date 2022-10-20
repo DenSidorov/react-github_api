@@ -1,0 +1,12 @@
+npx create-react-app --template typescript .
+
+
+*Tailwind
+https://tailwindcss.ru/docs/guides/create-react-app/
+npm install -D tailwindcss postcss autoprefixer
+
+*Redux Toolkit ( https://habr.com/ru/post/498860/ - инфа Redux)
+https://redux-toolkit.js.org/introduction/getting-started
+npm install @reduxjs/toolkit react-redux react-router-dom
+
+http://json2ts.com/
