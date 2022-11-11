@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react"
-import { useLinkClickHandler } from "react-router-dom"
 import { RepoCard } from "../components/RepoCard"
 import { useDebounce } from "../hooks/debounce"
 import { useLazyGetUserReposQuery, useSearchUsersQuery } from "../store/github/github.api"
@@ -7,13 +6,14 @@ import { useLazyGetUserReposQuery, useSearchUsersQuery } from "../store/github/g
 export function HomePage() {
     const [search, setSearch] = useState('')
     const debounced = useDebounce(search)
-    const [dropdown, SetDropdown] = useState (false)
+    const [dropdown, SetDropdown] = useState (false) // Для видимости dropdown
     const {isLoading, isError, data} = useSearchUsersQuery(debounced, {
-        skip: debounced.length < 3,
+        skip: debounced.length < 4, // При каких условиях не надо делать запросы
         // refetchOnFocus: true
     })
 
     const [fetchrepos, { isLoading: areReposLoading, data: repos }] = useLazyGetUserReposQuery()
+    // fetchrepos - ф-ция позволяет загружать данные. Т.к. isLoading уже есть - через двоеточие указываем др. переменную
 
     useEffect(() =>{
         SetDropdown(debounced.length >3 && data?.length! > 0)       
@@ -39,6 +39,7 @@ export function HomePage() {
 
                 {dropdown && <ul className="list-none top-[42px] left-0 rigt-0 max-h-[200px] overflow-y-scroll shadow-md bg-white">
                     { isLoading && <p className="text-center">Loading...</p>}
+                    
                     {data?.map(user => (
                         <li
                             key={user.id}

@@ -1,6 +1,16 @@
+# Поиск репозиториев по имени.
+# Сохранение репозиториев в избранном.
+
+# Использование техноллогий:
 *React
 *TypeScript
 *Tailwind
+*Redux Toolkit
+
+
+Пошаговая инструкция: steps.txt
+
+
 
 
 # Getting Started with Create React App

@@ -3,21 +3,21 @@ import { ServerResponse, IUser, IRepo } from './../../models/models';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 export const githabApi = createApi({
-    reducerPath: 'github/api',
+    reducerPath: 'github/api',  // Указываем где будут храниться все кэшированные данные при работе с API
     baseQuery: fetchBaseQuery({
-        baseUrl: 'https://api.github.com'
+        baseUrl: 'https://api.github.com' // Базовый Url
     }),
-    refetchOnFocus: true,
+    // refetchOnFocus: true,
     endpoints: build => ({
         searchUsers: build.query<IUser[], string>({
             query: (search: string) => ({
-                url: 'search/users',
+                url: 'search/users',   // Конкат с Базовым Url
                 params: {
                     q: search,
                     per_page: 10
                 }
             }),
-            transformResponse: (response: ServerResponse) => response.items
+            transformResponse: (response: ServerResponse) => response.items  // Чистим Responce
         }),
     getUserRepos: build.query<IRepo[], string>({
         query: (username: string) => ({
@@ -27,4 +27,4 @@ export const githabApi = createApi({
     }),
 })
 
-export const {useSearchUsersQuery, useLazyGetUserReposQuery} = githabApi
+export const {useSearchUsersQuery, useLazyGetUserReposQuery} = githabApi  // Получаем кастомный хукб который можем использовать в компонентах. Lazy - делает запрос когда захотим (не сразу)

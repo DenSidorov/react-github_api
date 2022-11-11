@@ -2,11 +2,49 @@ npx create-react-app --template typescript .
 
 
 *Tailwind
-https://tailwindcss.ru/docs/guides/create-react-app/
+
 npm install -D tailwindcss postcss autoprefixer
+https://tailwindcss.ru/docs/guides/create-react-app/
 
 *Redux Toolkit ( https://habr.com/ru/post/498860/ - инфа Redux)
-https://redux-toolkit.js.org/introduction/getting-started
-npm install @reduxjs/toolkit react-redux react-router-dom
 
+npm install @reduxjs/toolkit react-redux react-router-dom
+https://redux-toolkit.js.org/introduction/getting-started
+
+
+=======================
+index.tsx => Добавляем <BrowserRouter>
+
+/pages/HomePage.tsx
+/pages/FavouritesPage.tsx
+
+App.tsx => Добавляем:
+    <Routes>
+        <Route path="/" element={ <HomePage /> } />
+        <Route path="/favourites" element={ <FavouritesPage /> } />
+    </Routes>
+
+/components/Navigation.tsx
+App.tsx => Добавляем:
+    <Navigation />
+
+=================
+/store/index.ts
+index.tsx => Добавляем <Provider store={store}>
+
+/store/github/github.api.ts  // Настройка API
+
+index.tsx Ругистрируем:
+reducer: {
+        [githabApi.reducerPath]: githabApi.reducer,
+        github: githubReduser
+
+В просмотре кода, в запросе превью забираем Responce и вставляем в
 http://json2ts.com/
+Генерируем интерфейс и вставляем в 
+/models/models.ts
+RootObject  меняем на ServerResponce
+Items > IUser
+
+Создаём локальный хук debounced чтобы строка поиска не отправляла запрос посимвольно, а с задержкой
+В HomePage создаём поле поиска с эфектом debounced

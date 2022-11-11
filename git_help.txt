@@ -1,0 +1,30 @@
+sudo apt update
+sudo apt upgrade
+Шаг 2. Установка Git на Debian 11.
+По умолчанию Git доступен в репозитории Debian Bullseye. Выполните следующую команду ниже, чтобы установить его:
+sudo apt install git
+Проверьте установку, распечатав версию Git:
+git --version
+Шаг 3. Настройте Git.
+После завершения установки вам нужно будет настроить общие параметры, такие как имена и адреса электронной почты, в основном для сообщений git commit. Это довольно просто, поскольку руководство объяснит ниже:
+git config --global user.name "meilana"
+git config --global user.email "meilana@infoit.com"
+Вы можете проверить изменения с помощью следующей команды:
+git config --list
+Вывод:
+user.name=meilana
+user.email=meilana@infoit.ru
+
+git status
+git branch = в какой ветке находимся
+git remote add origin https://github.com/DenSidorov/git-course.git = привязываем репозиторий
+git checkout -b test = создать ветку и упасть в нее
+git checkout -b test = удаляет ветку
+git merge test = объединяет ветки(находясь в master объеденит с readme)
+git add index.html
+git add . = добавить все файлы к надзору
+git commit -m "add index.html" = создаем commit
+git push = заливаем в репозиторий
+
+==================================
+rm -rf .git - отключаем контроль версий
